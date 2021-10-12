@@ -1,0 +1,31 @@
+{
+    "title": "FrontEndNote",
+    "author" : "TrumanTian",
+    "description" : "",
+    "language" : "zh-hans",
+    "structure": {
+        "readme": "README.md"
+    },
+    "plugins": [
+        "search-pro"
+    ],
+    "pluginsConfig": {
+        "anchor-navigation-ex": {
+            "isShowTocTitleIcon": true
+        }
+    },
+    "links" : {
+        "sidebar" : {
+            "个性链接1" : "https://www.baidu.com",
+            "百度": "https://www.baidu.com",
+            "淘宝": "https://www.taobao.com"
+        }
+    },
+    "styles": {
+        "website": "styles/website.css",
+        "ebook": "styles/ebook.css",
+        "pdf": "styles/pdf.css",
+        "mobi": "styles/mobi.css",
+        "epub": "styles/epub.css"
+    }
+}
