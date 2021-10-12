@@ -1,5 +1,8 @@
 # Introduction
 
+## 依赖安装
+gitbook install
+
 ## 启动项目
 gitbook serve
 
