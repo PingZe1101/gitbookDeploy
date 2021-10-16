@@ -8,3 +8,4 @@
 * [Chrome](doc/Chrome/Chrome.md)
   * [使用技巧](doc/Chrome/skills.md)
 * [DevTools](doc/DevTools/DevTools.md)
+* [Resume](doc/Resume.md)
