@@ -1,7 +1,7 @@
 DevTools.md
 
 # 给mac添加右键菜单“Open With VSCode”
-1. command + n 打开 “自动操作” 应用程序
+1. command + n 打开 “自动操作” 应用程序，点击“新建文稿”
 2. 选择快速操作
    1. 在左侧面板选择“实用工具”；然后找到”运行 Shell 脚本“后双击，在右侧“服务”收到选定选择文件夹，位置 “Finder（访达）.app”；“运行 Shell 脚本”的面板里，Shell选择 “/bin/bash“，传递输入选择 “作为自变量”，然后修改 Shell 脚本，如图![openWithVSCode][openWithVSCodePic]
    2. 按顺序操作，复制以下内容到 Shell 脚本中
