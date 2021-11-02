@@ -153,6 +153,13 @@ echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 - 查看邮箱配置：git config user.email
 - 全局配置用户名：git config --global user.name "nameVal"
 - 全局配置邮箱：git config --global user.email "email@qq.com"
+### 常用命令
+```git
+// 删除本地分支
+git branch -d localBrancheName || git branch --delete localBrancheName
+// 删除远程分支
+git push origin -d remoteBranchName || git push origin --delete remoteBranchName
+```
 ### git通过ssh连接github
 1. 本地生成ssh密钥（包含 私钥id_rsa 和 公钥id_rsa.pub）
    1. 终端中输入‘ssh-keygen -t rsa -C "你的邮箱账号"’ ![createSSHKey][createSSHKeyPic]
