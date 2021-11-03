@@ -24,3 +24,22 @@ display: -webkit-box; // 作为弹性伸缩盒子模型显示。
     }
 }
 ```
+
+### 获取url query参数值
+```javascript
+function getSearchParams() {
+  const { search } = window.location;
+  if (!search) return '';
+  return search
+    .slice(1)
+    .split('&')
+    .map((group) => group.split('='))
+    .reduce((searchParamsObj, item) => {
+      searchParamsObj[item[0]] = item[1];
+      return searchParamsObj;
+    }, {});
+}
+```
+
+
+
