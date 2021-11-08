@@ -118,7 +118,7 @@ echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 - 打开iTerm2窗口，点击左上角菜单 iTerm2 --> Make iTerm2 Default Term 即可
     - 注意：在vscode中使用配置了主题的 iTerm2，字体显示可能会不正常，解决方案：
     1. 打开iTerm2按住“command + ,”打开Preferences，在 Profiles --> Text --> Font 中查看当前使用的字体
-    2. 打开vscode按住“shift + command + p”打开“命令面板”，检索“setting.json”，选择“Preferences： Open Setting（JSON）”，在JSON文件中追加字体配置，将下面代码中的“Meslo LG S for Powerline”替换成你iTerm2使用的字体 即可
+    2. 打开vscode按住“shift + command + p”打开“命令面板”，检索“setting.json”，选择“Preferences： Open Setting（JSON）”，在JSON文件中追加字体配置，将下面json代码中的“Meslo LG S for Powerline”替换成你iTerm2使用的字体 即可
     ```
     "editor.fontFamily": "Meslo LG S for Powerline",
     "terminal.integrated.fontFamily": "Meslo LG S for Powerline"
