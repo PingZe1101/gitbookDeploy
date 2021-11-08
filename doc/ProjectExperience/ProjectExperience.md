@@ -483,6 +483,7 @@ const html = `<ul>
 </body>
 ```
 
+
 ## event.target 和 event.currentTarget [传送门](https://juejin.cn/post/6844903506399199246)
 1. currentTarget始终是监听事件者，而target是事件的真正发出者
 2. this、currentTarget和target
