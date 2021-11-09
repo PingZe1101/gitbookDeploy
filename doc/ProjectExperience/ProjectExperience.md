@@ -497,3 +497,50 @@ const html = `<ul>
       1. 例举个场景：ul中包含n个li，要给每个li注册相同click处理程序，如果单独去给每个li注册事件，需要获取n次dom元素、注册多个事件处理程序（js函数），这两点将引发重绘和重排、增加内存占用，直接影响到页面的整体运行性能；而使用事件委托，只需要给ul元素注册事件
 
 
+## 前端模块规范（共三种）：CommonJs、AMD 和 [CMD](https://www.jianshu.com/p/ebdf2233e3fe) [传送门](https://www.jianshu.com/p/d67bc79976e6)
+1. CommonJs 是服务器端模块的规范，由Node推广使用
+   1. 加载模块使用require方法，该方法读取一个文件并执行，返回文件内部的module.exports对象，require 是同步的。模块系统需要同步读取模块文件内容，并编译执行以得到模块接口；然而在浏览器端，加载 JavaScript 最佳、最容易的方式是在 document 中插入 script标签。但脚本标签天生异步，传统 CommonJS 模块在浏览器环境中无法正常加载  
+    ```javascript
+    math.js
+    exports.add = function() {
+        var sum = 0, i = 0, args = arguments, l = args.length;
+        while (i < l) {
+        sum += args[i++];
+        }
+        return sum;
+    };
+
+    increment.js
+    var add = require('math').add;
+    exports.increment = function(val) {
+        return add(val, 1);
+    };
+
+    index.js
+    var increment = require('increment').increment;
+    var a = increment(1); //2
+    ```
+2. AMD 是 RequireJS 在推广过程中对模块定义的规范化产出
+   1. AMD是 "Asynchronous Module Definition"的缩写，意为"异步模块定义"，依赖关系前置,在定义模块的时候就要声明其依赖的模块
+    ```javascript
+    define(['./a', './b'], function(a, b) { // 依赖必须一开始就写好
+        a.doSomething()
+        // 此处略去 100 行
+        b.doSomething()
+        ...
+    })
+    ```
+3. CMD 是 SeaJS 在推广过程中对模块定义的规范化产出
+   1. CMD 是 “Common Module Definition”的缩写，意为"通用模块定义"，按需加载依赖,只有在用到某个模块的时候再去require
+    ```javascript
+    define(function(require, exports, module) {
+        var a = require('./a')
+        a.doSomething()
+        // 此处略去 100 行
+        var b = require('./b') // 依赖可以就近书写
+        b.doSomething()
+        // ... 
+    })
+    ```
+
+
