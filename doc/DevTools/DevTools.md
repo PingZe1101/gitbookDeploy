@@ -141,9 +141,9 @@ git push origin -d remoteBranchName || git push origin --delete remoteBranchName
 ### git通过ssh连接github
 1. 本地生成ssh密钥（包含 私钥id_rsa 和 公钥id_rsa.pub）
    1. 终端中输入‘ssh-keygen -t rsa -C "你的邮箱账号"’ ![createSSHKey][createSSHKeyPic]
-   2. 注意：如果已经生成过 id_rsa 和 id_rsa.pub 的，可通过"rm id_rsa"和"rm id_rsa.pub"将密钥删除，生成的sshkey能用于多个代码托管平台吗
+   2. 注意：如果已经生成过 id_rsa 和 id_rsa.pub 的，可通过"rm id_rsa"和"rm id_rsa.pub"将密钥删除，生成的sshkey能用于多个代码托管平台
 2. 登入github，进入setting --> SSH and GPG keys --> New SSH key
-   1. Title内容 随意，Key内容 对应id_rsa.pub文件中的内容，然后点击“Add SSH key”保存
+   1. Title内容 随意，Key内容 对应公钥id_rsa.pub文件中的内容，然后点击“Add SSH key”保存
 3. 终端中输入 “ssh -T git@github.com”命令进行测试 ![testSSH][testSSHPic]
 
 ### emmet语法
