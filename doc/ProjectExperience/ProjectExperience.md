@@ -549,7 +549,16 @@ const html = `<ul>
    1. e.g. 新东方大学事业部 国庆、双11抽奖活动中的 活动id、添加收获地址跳转链接等值都是通过常量的方式定义在代码中的
 3. 解决方案：涉及业务方面的固定值 可以 通过调用接口获取 || 构建后作为静态资源存放于服务端代码中的 也可以通过资源配置文件从服务端读取（苏宁礼遇wap）
 
-
+### 如何声明一个 包含换行的 String变量 --> 适用ES6字符串模版
+```javascript
+    const str1 = '1
+        2
+        3'; // Uncaught SyntaxError: Invalid or unexpected token
+    const str2 = `1
+        2
+        3`;
+    console.log(str2);;; // '1\n2\n3'
+```
 
 
 
