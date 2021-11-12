@@ -5,10 +5,13 @@
     - 
 
 ## 启动项目
-gitbook serve
+1. gitbook serve
+   1. 会在项目根目录下面生成 _book文件夹（里面是html静态文件）。并且启动了一个web服务器。 访问http://localhost:4000就可以看到效果
+
 
 ## 构建项目
-gitbook build
+1. gitbook build
+   1. 会在mybook目录下面生成 _book文件夹（里面是html静态文件）。如果自己有web服务器，把_book文件夹复制到自己的服务器下面即可（首页是_book文件夹中的index.html）
 
 ## gitbook项目插件
 1. gitbook项目添加、安装插件方式：book.json文件 在"plugins"中追加插件项，在"pluginsConfig"中进行配置
