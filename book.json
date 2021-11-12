@@ -7,7 +7,8 @@
         "readme": "README.md"
     },
     "plugins": [
-        "search-pro"
+        "search-pro",
+        "anchor-navigation-ex-toc"
     ],
     "pluginsConfig": {
         "anchor-navigation-ex": {
