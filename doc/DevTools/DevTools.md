@@ -138,6 +138,52 @@ git branch -d localBrancheName || git branch --delete localBrancheName
 // 删除远程分支
 git push origin -d remoteBranchName || git push origin --delete remoteBranchName
 ```
+### .gitignore
+1. 简介：每个Git项目中都需要一个“.gitignore”文件，这个文件的作用就是告诉Git哪些 文件||文件夹 是不需要被添加到版本管理中的。比如这个基于gitbook框架的项目：根目录下的node_modules 和 _book 文件夹，这些不需要提那家到版本管理中的 文件||文件夹 在项目中很重要，但是它们占用内存也是很大的，所以一般我们使用Git管理的时候 会将其添加到.gitignore文件中
+2. 常用规则
+    ```
+    /mtk/ 过滤根目录下的mtk文件夹 包含里面的所有文件
+    *.zip 过滤所有.zip文件
+    /mtk/do.c 过滤根目录下的mtk文件夹中的do.c文件
+    ```
+    - 通过以上规则的配置：被过滤掉的文件就不会出现在你的Git仓库中了，当然本地库中还有，只是push的时候不会上传
+    除了以上规则，它还可以指定要将哪些文件添加到版本管理中（include 和 exclude 的区别）
+    ```
+    !src/   不过滤该文件夹
+    !*.zip   不过滤所有.zip文件
+    !/mtk/do.c 不过滤该文件
+    ```
+  1. 配置语法：
+     1. 以斜杠/开头表示目录；
+     2. 以星号*通配多个字符；
+     3. 以问号?通配单个字符
+     4. 以方括号[]包含单个字符的匹配列表；
+     5. 以叹号!表示不忽略(跟踪)匹配到的文件或目录；
+     6. 此外，git 对于 .gitignore 配置文件是按行从上到下进行规则匹配的，意味着如果前面的规则匹配的范围更大，则后面的规则将不会生效；
+  2. 示例说明
+     1. 规则：fd1/*
+        1. 说明：忽略目录 fd1 下的全部内容；注意，不管是根目录下的 /fd1/ 目录，还是某个子目录 /child/fd1/ 目录，都会被忽略；
+     2. 规则：/fd1/*
+        1. 说明：忽略根目录下的 /fd1/ 目录的全部内容；
+     3. 规则：
+     ```
+        /*
+        !.gitignore
+        !/fw/bin/
+        !/fw/sf/
+     ```
+       1. 说明：忽略全部内容，但是不忽略 .gitignore 文件、根目录下的 /fw/bin/ 和 /fw/sf/ 目录
+1. 创建.gitignore文件
+   1. 常规的windows操作（windows下不允许在资源管理器中直接新建 匿名文件，所以先新建“gitignore.txt”文件）
+      1. 项目根目录下创建gitignore.txt；
+      2. 编辑gitignore.txt，写下你的规则，例如加上node_modules/；
+      3. 打开命令行窗口，切换到 项目根目录；
+      4. 执行命令ren gitignore.txt .gitignore
+         1. ren 即 “rename”
+   2. 用Git Bash
+      1. 根目录下右键选择“Git Bash Here”进入bash命令窗口；
+      2. 输入vim .gitignore 或 touch .gitignore命令，打开文件（没有文件会自动创建）；
+      3. 按i键切换到编辑状态，输入规则，例如node_modules/，然后按Esc键退出编辑，输入:wq保存退出
 ### git通过ssh连接github
 1. 本地生成ssh密钥（包含 私钥id_rsa 和 公钥id_rsa.pub）
    1. 终端中输入‘ssh-keygen -t rsa -C "你的邮箱账号"’ ![createSSHKey][createSSHKeyPic]
