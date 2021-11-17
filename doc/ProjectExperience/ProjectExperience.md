@@ -65,7 +65,7 @@ const html = `<ul>
             </ul>`
 ```
 
-## 新东方大学事业部国庆、双11抽奖活动
+## 新东方大学事业部国庆、双11抽奖活动动效
 - 使用css3 [animation](https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation)实现（本需求只用到了 animation-name、animation-duration、animation-timing-function 和 animation-iteration-count）
 - animation: [animation-name/动画名称] [animation-duration/动画时间] [animation-timing-function/动画如何完成一个周期] [animation-delay/动画延时] [animation-iteration-count/动画播放次数] [animation-direction/指定是否应该轮流反向播放动画] [animation-fill-mode/规定当动画不播放时（当动画完成时，或当动画有一个延迟未开始播放时），要应用到元素的样式] [animation-fill-mode/指定动画是否正在运行或已暂停];
     - animation-timing-function取值
