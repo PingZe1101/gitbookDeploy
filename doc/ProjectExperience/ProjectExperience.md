@@ -560,7 +560,129 @@ const html = `<ul>
     console.log(str2);;; // '1\n2\n3'
 ```
 
+### 电梯导航
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        .nav-container {
+            position: fixed;
+            left: 0;
+            top: 20%;
+            width: 50px;
+        }
+        .nav-item {
+            box-sizing:  border-box;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            color: #FFF;
+            cursor: pointer;
+        }
+        .nav-item.active {
+            border: 2px solid #FFF;
+        }
+        .header {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 20px;
+            background: hotpink;
+        }
+        .floor {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            width: 100%;
+            height: 300px;
+            background: hotpink;
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav-container">
+        <li class="nav-item active">1</li>
+        <li class="nav-item">2</li>
+        <li class="nav-item">3</li>
+        <li class="nav-item">4</li>
+        <li class="nav-item">5</li>
+        <li class="nav-item">6</li>
+        <li class="nav-item">7</li>
+    </ul>
+    
+    <div class="header"></div>
+    <div class="floor floor-01"></div>
+    <div class="floor floor-02"></div>
+    <div class="floor floor-03"></div>
+    <div class="floor floor-04"></div>
+    <div class="floor floor-05"></div>
+    <div class="floor floor-06"></div>
+    <div class="floor floor-07"></div>
+    <div class="footer"></div>
 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            //给导航 和 楼层上色：红橙黄绿蓝靛紫
+            const colorArr = ['red','orange','yellow','green','blue','cyan','purple'];
+            for(i = 0; i < colorArr.length; i++){
+                $('.nav-item').eq(i).css({background: colorArr[i]});
+                $('.floor').eq(i).css({background: colorArr[i]});
+            }
 
+            //获取各个楼层的距离 页面最顶部 的垂直偏移量,并放入数组
+            const floorOffsetTopArr = [];
+            for(var i = 0; i < $('.floor').length; i++){
+                floorOffsetTopArr.push($('.floor').eq(i).offset().top);
+            }
+                
+            //给导航每个栏目按钮添加点击事件，点击导航上的每个栏目按钮，html(body)滑动到对应的栏目
+            $('.nav-item').click(function(){
+                // css中没有scrollTop属性，scrollTop是jQuery中的方法
+                // animate 与 scrollTop 结合使用达成滑动回顶部效果
+                $('html,body').animate({scrollTop: `${floorOffsetTopArr[$(this).index()] - 320}px`});
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+
+            function highlightNavItem() {
+                // 获取获取页面 当前已经滚动的 scrollTop值 
+                const windScrollTop = $(window).scrollTop();
+                // 遍历每一个楼层 或者 每个楼层对应的按钮
+                for(i = 0; i < $('.floor').length; i++){
+                    // 滚动到最后一个floor之前
+                    if(windScrollTop < floorOffsetTopArr[floorOffsetTopArr.length-1]){
+                        // 给一个循环动态判断的条件，若当前scrollTop值大于数组的arr[i],且小于arr[i+1],就对应的栏目按钮添加样式
+                        if(windScrollTop >= (floorOffsetTopArr[i] - 320) && windScrollTop < (floorOffsetTopArr[i+1] - 320)){
+                            $('.nav-item').eq(i).addClass('active').siblings().removeClass('active');
+                        }
+                    }else{
+                        // 滚动到最后一个floor
+                        $('.nav-item').eq(floorOffsetTopArr.length-1).addClass('active').siblings().removeClass('active');
+                    }
+                }
+            }
+
+            highlightNavItem(); // 页面进入时就执行一次，适用滚动到中间位置 刷新页面高亮对应nav-item的场景
+            
+            //给window添加滚动事件
+            $(window).scroll(function(){
+                highlightNavItem();
+            });
+        });
+    </script>
+</body>
+</html>
+```
+
+### DOM事件绑定 与 箭头函数
+- DOM事件绑定中，如果回调函数中使用了 this 来获取当前注册的DOM元素（事件源），那么回调函数就不能使用剪头函数，因为箭头函数中 this 会向函数的上一层查找
 
 

@@ -14,6 +14,26 @@ display: -webkit-box; // 作为弹性伸缩盒子模型显示。
 -webkit-line-clamp: n; // n为显示的行数
 ```
 
+## js
+### 阻止默认事件
+- event.preventDefault();
+### 阻止事件冒泡
+- event.stopPropagation();
+### 禁止蒙层底部页面跟随滚动的方法（pc、h5全平台兼容）
+```javascript
+function preventBodyScroll (isFixed) {
+    const winScrollY = window.scrollY;
+    const bodyEle = document.body;
+    if (isFixed) {
+        bodyEle.style.position = 'fixed'
+        bodyEle.style.top = `-${winScrollY}px`;
+    } else {
+        bodyEle.style.position = '';
+        bodyEle.style.top = '';
+        window.scrollTo(0, winScrollY); // 回到原先的top
+    }
+}
+```
 ### 获取数组中某项的索引，indexOf Polyfill
 ```javascript
 !Array.prototype.indexOf && Array.prototype.indexOf = function(item) {
