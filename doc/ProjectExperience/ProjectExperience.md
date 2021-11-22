@@ -685,4 +685,36 @@ const html = `<ul>
 ### DOM事件绑定 与 箭头函数
 - DOM事件绑定中，如果回调函数中使用了 this 来获取当前注册的DOM元素（事件源），那么回调函数就不能使用剪头函数，因为箭头函数中 this 会向函数的上一层查找
 
+### 页面有H5、PC双端，两者的访问链接不同：在移动端打开PC链接 自动跳转至 H5链接，在PC端打开H5链接 自动跳转至 PC链接
+- PC
+```javascript
+(function () {
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+        location.href = `${H5访问链接}`;
+    }
+})();
+```
+- H5
+```javascript
+(function () {
+    if (!navigator.userAgent.match(
+            /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+        )
+    ) {
+        location.href = `${PC访问链接}`;
+    }
+})();
+
+```
+
+
 
