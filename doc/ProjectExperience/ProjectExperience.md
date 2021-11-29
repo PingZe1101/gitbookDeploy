@@ -819,6 +819,182 @@ const html = `<ul>
 }
 ```
 
+### 移动开发的HTML5页面点击按钮出现闪烁或黑色背景解决方案
+1. 场景：节日活动推广落地页面，PC、wap双端，页面仅有一些点击效果相似的按钮 基本没有其他交互，时间紧张 为尽快上线，协调UI将设计稿切分成一块儿块儿的图片，前端用div布局 用css将展示内容作为背景图进行设置，涉及到 点击按钮 的部分，前端使用相同 宽、高、圆角的无边框、透明div进行定位覆盖，点击事件绑定在 覆盖在按钮的div上：pc浏览器模拟移动端仿真模式 || 真机上 点击按钮（div）出现闪烁 或 黑色背景
+   1. pc: https://nce.koolearn.com/zhuanti/oral_pc
+   2. wap: https://nce.koolearn.com/zhuanti/oral_wap
+2. 解决方案
+   1. 设置html || * 的 -webkit-tap-highlight-color样式
+       1. -webkit-tap-highlight-color 是一个没有标准化的属性，能够设置点击元素 || 链接时出现的高亮颜色。显示给用户的高光是他们成功点击的标识，以暗示他们点击的元素
+       2.  浏览器兼容：webkit/safari, Blink/Chrome
+       3.  随意查阅了下m.jd.com || m.taobao.com网站css，都有对“-webkit-tap-highlight-color”的设置
+   ```css
+    *{
+        -webkit-tap-highlight-color: transparent;
+    }
+    ```
+
+### jQuery常用api
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        li {
+            width: 500px;
+            height: 50px;
+        }
+        .box01 {
+            background-color: red;
+        }
+        .box02 {
+            background-color: orange;
+        }
+        .box03 {
+            background-color: yellow;
+        }
+        .box04 {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="box01"></li>
+        <li class="box02"></li>
+        <li class="box03"></li>
+        <li class="box04"></li>
+    </ul>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script>
+    // jQuery 事件绑定 || 事件委托方式：多个元素绑定相同事件、同时绑定多个事件
+        // 多个事件源之间使用“,”分割，多个事件之间使用" "分割
+        // 事件绑定
+        $(".box01, .box02").on("click mouseover", function(event) {
+            console.log(`事件绑定：${event.target.className} 的 ${event.type} 事件触发了`);
+        });
+        // 事件委托
+        $("body").on("click mouseover", ".box03, .box04", function(e) {
+            console.log(`事件委托：${event.target.className} 的 ${event.type} 事件触发了`);
+        });
+
+    // jQuery 判断元素上是否包含某个class
+        $("li").on("mouseover", function() {
+            if ($(this).hasClass("box01")) {
+                console.log("mouseover box01")
+            } else if ($(this).hasClass("box02")) {
+                console.log("mouseover box02")
+            } else if ($(this).hasClass("box03")) {
+                console.log("mouseover box03")
+            } else if ($(this).hasClass("box04")) {
+                console.log("mouseover box04")
+            } else {}
+        });
+    </script>
+</body>
+</html>
+```
+
+### toast弹窗实现  未完待续
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        #toast1,
+        #toast2 {
+          display: none;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 150px;
+          border-radius: 10px;
+          text-align: center;
+          font-size: 12px;
+          line-height: 40px;
+          color: #fff;
+          background: rgba(0, 0, 0, .7);
+        }
+    </style>
+</head>
+<body>
+    <!-- 实现1 -->
+    <button id="toastBtn1">toast btn1</button>
+    <div id="toast1"></div>
+
+    <!-- 实现2 -->
+    <button id="toastBtn2">toast btn2</button>
+    <div id="toast2"></div>
+
+    <!-- 实现3 -->
+    <button id="toastBtn3">toast btn3</button>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $("body")
+            .on("click", "#toastBtn1", function() {
+                $("#toast1").text("hello, i'm toast1.");
+                $("#toast1").fadeIn().delay(1000).fadeOut();
+            })
+            .on("click", "#toastBtn2", function() {
+                $("#toast2").text("hello, i'm toast2.").show();
+                setTimeout(() => {
+                    $("#toast2").hide();
+                }, 1000);
+            })
+            .on("click", "#toastBtn3", function() {
+                ToastFn("hello, i'm toast3.", 1000);
+                // 封装成了函数
+                function ToastFn(msg, duration) {
+                    duration = isNaN(duration) ? 3000 : duration;
+                    var toast = document.createElement('div');
+                    toast.innerHTML = msg;
+                    toast.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 150px;
+                        border-radius: 10px;
+                        text-align: center;
+                        font-size: 12px;
+                        line-height: 40px;
+                        color: #fff;
+                        background: rgba(0, 0, 0, .7);
+                    `;
+                    document.body.appendChild(toast);
+                    setTimeout(function() {
+                        var d = 0.5;
+                        toast.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+                        toast.style.opacity = '0';
+                        setTimeout(function() {
+                            document.body.removeChild(toast);
+                        }, d * 1000);
+                    }, duration);
+                }
+            });
+    </script>
+</body>
+</html>
+```
+
+
 
 
 
