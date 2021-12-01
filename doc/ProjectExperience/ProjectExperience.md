@@ -906,7 +906,7 @@ const html = `<ul>
 </html>
 ```
 
-### toast弹窗实现  未完待续
+### toast弹窗实现  需要完善下动画部分的知识空白
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -979,10 +979,13 @@ const html = `<ul>
                         background: rgba(0, 0, 0, .7);
                     `;
                     document.body.appendChild(toast);
+                    // 第一个setTimeout：duration后添加渐入渐出样式，同时opacity设为0，toast元素消失
                     setTimeout(function() {
                         var d = 0.5;
-                        toast.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+                        toast.style.webkitTransition = `opacity ${d}s ease-in-out`;
                         toast.style.opacity = '0';
+                        /* 第二个setTimeout：虽然上面给 toast元素 设置了opacity为0，元素从页面上消失了
+                        但是标签还在html中，多次点击会向body中append多个toast元素，所以第二个setTimeout的目的在于 移除 toast元素：题外话，如果不使用setTimeout直接移除，渐入渐出的样式效果就无法表现出来  */
                         setTimeout(function() {
                             document.body.removeChild(toast);
                         }, d * 1000);
