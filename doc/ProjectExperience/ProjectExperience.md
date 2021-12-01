@@ -906,7 +906,12 @@ const html = `<ul>
 </html>
 ```
 
-### toast弹窗实现  需要完善下动画部分的知识空白
+### toast弹窗实现
+- transition: [transition-property/css属性] [transition-duration/动画时间] [transition-timing-function/动画如何完成一个周期] [transition-delay/动画延时]
+- transition 和 animation的区别：
+  - transition 是令一个或多个可以用数值表示的css属性值发生变化时产生过渡效果。 animation 则是属于关键帧动画的范畴，它本身被用来替代一些纯粹表现的javascript代码而实现动画
+- transform：变形、形变
+  - 针对translate、translateX（X轴平移）、translateY（Y轴平移）、rotate（旋转）、scale（缩放）、skew（扭曲）
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -970,6 +975,7 @@ const html = `<ul>
                         top: 50%;
                         left: 50%;
                         transform: translate(-50%, -50%);
+                        transition: opacity .5s ease-in-out;
                         width: 150px;
                         border-radius: 10px;
                         text-align: center;
@@ -981,14 +987,12 @@ const html = `<ul>
                     document.body.appendChild(toast);
                     // 第一个setTimeout：duration后添加渐入渐出样式，同时opacity设为0，toast元素消失
                     setTimeout(function() {
-                        var d = 0.5;
-                        toast.style.webkitTransition = `opacity ${d}s ease-in-out`;
                         toast.style.opacity = '0';
                         /* 第二个setTimeout：虽然上面给 toast元素 设置了opacity为0，元素从页面上消失了
-                        但是标签还在html中，多次点击会向body中append多个toast元素，所以第二个setTimeout的目的在于 移除 toast元素：题外话，如果不使用setTimeout直接移除，渐入渐出的样式效果就无法表现出来  */
+                        但是标签还在html中，多次点击会向body中append多个toast元素，所以第二个setTimeout的目的在于 在宏任务中移除 toast元素：题外话，如果不使用setTimeout直接移除，渐入渐出的样式效果就无法表现出来  */
                         setTimeout(function() {
                             document.body.removeChild(toast);
-                        }, d * 1000);
+                        });
                     }, duration);
                 }
             });
