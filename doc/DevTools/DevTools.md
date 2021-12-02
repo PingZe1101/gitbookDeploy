@@ -133,8 +133,19 @@ echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 - 全局配置邮箱：git config --global user.email "email@qq.com"
 ### 常用命令
 ```git
+// 查看所有远程分支
+git branch -a
+
+// 检出远程分支到本地
+// 一般localBrancheName 与 remoteBranchName 同名，如果目标远程分支 本地pull不到，那checkout会失败
+git checkout -b localBrancheName remoteBranchName
+
+//  vscode pull不到远程新建分支，使用此命令
+git remote update origin     存疑：网上看git fetch也可以解决这个问题，git fetch干什么用的
+
 // 删除本地分支
 git branch -d localBrancheName || git branch --delete localBrancheName
+
 // 删除远程分支
 git push origin -d remoteBranchName || git push origin --delete remoteBranchName
 ```
