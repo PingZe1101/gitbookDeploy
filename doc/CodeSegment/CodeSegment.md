@@ -16,9 +16,10 @@ display: -webkit-box; // 作为弹性伸缩盒子模型显示。
 
 ## js
 ### 阻止默认事件
-- event.preventDefault();
+- Event.preventDefault();
 ### 阻止事件冒泡
-- event.stopPropagation();
+- Event.stopPropagation();
+  - 另 Event.cancelBubble = true; // MDN解释 Event.cancelBubble 属性是 Event.stopPropagation()的一个曾用名，查询网络得知其存在的意义在于 为兼容IE，都快2022年了 还有几个用IE的，阻止事件冒泡尽管用 Event.stopPropagation() 就完了
 ### 禁止蒙层底部页面跟随滚动的方法（pc、h5全平台兼容）
 ```javascript
 function preventBodyScroll (isFixed) {
