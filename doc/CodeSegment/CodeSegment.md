@@ -20,6 +20,38 @@ display: -webkit-box; // 作为弹性伸缩盒子模型显示。
 ### 阻止事件冒泡
 - Event.stopPropagation();
   - 另 Event.cancelBubble = true; // MDN解释 Event.cancelBubble 属性是 Event.stopPropagation()的一个曾用名，查询网络得知其存在的意义在于 为兼容IE，都快2022年了 还有几个用IE的，阻止事件冒泡尽管用 Event.stopPropagation() 就完了
+### 阻止事件冒泡、同时阻止监听同一事件的其他事件监听器被调用
+- Event.stopImmediatePropagation();
+- 如果多个事件监听器被附加到相同元素的相同事件类型上，当此事件触发时，它们会按其被添加的顺序被调用。如果在其中一个事件监听器中执行 stopImmediatePropagation() ，那么剩下的事件监听器都不会被调用
+  ```javascript
+    <body>
+        <div>
+            <p>paragraph</p>
+        </div>
+        <script>
+            const p = document.querySelector('p')
+            p.addEventListener("click", (event) => {
+              alert("我是p元素上被绑定的第一个监听函数");
+            }, false);
+
+            p.addEventListener("click", (event) => {
+              alert("我是p元素上被绑定的第二个监听函数");
+              event.stopImmediatePropagation();
+              // 执行stopImmediatePropagation方法，阻止click事件冒泡,并且阻止p元素上绑定的其他click事件的事件监听函数的执行
+            }, false);
+
+            p.addEventListener("click",(event) => {
+              alert("我是p元素上被绑定的第三个监听函数");
+              // 该监听函数排在上个函数后面，该函数不会被执行
+            }, false);
+
+            document.querySelector("div").addEventListener("click", (event) => {
+              alert("我是div元素,我是p元素的上层元素");
+              // p元素的click事件没有向上冒泡，该函数不会被执行
+            }, false);
+        </script>
+    </body>
+  ```
 ### 禁止蒙层底部页面跟随滚动的方法（pc、h5全平台兼容）
 ```javascript
 function preventBodyScroll (isFixed) {
