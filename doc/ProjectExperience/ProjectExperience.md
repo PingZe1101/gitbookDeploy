@@ -1053,7 +1053,7 @@ const html = `<ul>
                         clientWidth = 750;
                     }
                     if (!clientWidth) return;
-                    htmlEle.style.fontSize = clientWidth / 7.5 + 'px'; // 等价于clientWidth / 750 * 100 + 'px';
+                    htmlEle.style.fontSize = clientWidth / 7.5 + 'px';
                 };
             if (!doc.addEventListener) return;
             win.addEventListener(resizeEvt, reCalc, false);
