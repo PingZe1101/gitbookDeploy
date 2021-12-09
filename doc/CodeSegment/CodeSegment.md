@@ -167,4 +167,17 @@ const second = arr[1];
 const [first, second] = arr;
 ```
 
+#### 获取图片宽高（较优解）
+```javascript
+  const img = new Image();
+  img.src = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-04-07%2F5e8c1c1f397b9.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641609272&t=8166b79fc50ddaf648982d4171ad040f"; // 图片来源于 百度图片
+   const check = function() {
+      if (img.width || img.height) {
+        // TODO
+        clearInterval(interval);
+      }
+    }
+    const interval = setInterval(check, 10);
+```
+
 
