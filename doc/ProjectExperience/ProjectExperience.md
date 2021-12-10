@@ -901,6 +901,40 @@ const html = `<ul>
                 console.log("mouseover box04")
             } else {}
         });
+        
+    /*
+        * $.extend([deep], target, object1 [, objectN])
+        * 用于将一个或多个对象的内容合并到目标对象
+        * params：
+        *   deep：可选。 Boolean类型 指示是否深度合并对象，默认为false。如果该值为true，且多个对象的某个同名属性也都是对象，则该"属性对象"的属性也将进行合并
+        * target：合并到的目标对象，原值会被修改：如果不想改变被合并的对象 可以将target定义为“{}”，将结果再赋值给变量即可
+    */
+        var infoPart1 = {
+            height: '180cm',
+            weight: '100kg',
+            age: '29',
+            local: {
+                province: 'TJ',
+            }
+        }
+        var infoPart2 = {
+            gender: 'male',
+            local: {
+                country: 'China',
+            }
+        }
+        var info = $.extend(true, {}, infoPart1, infoPart2);
+        console.log(info); 
+        /* {
+            height: '180cm',
+            weight: '100kg',
+            age: '29',
+            gender: 'male',
+            local: {
+                province: 'TJ',
+                country: 'China'
+            }
+        } */
     </script>
 </body>
 </html>
