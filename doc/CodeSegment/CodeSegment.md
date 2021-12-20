@@ -180,4 +180,31 @@ const [first, second] = arr;
     const interval = setInterval(check, 10);
 ```
 
+#### 日期转化为 时间戳
+```javascript
+  var now = new Date();
+  console.log('Date.getTime()', now.getTime()); // Date.getTime() 1639989558558
+  console.log('Date.valueOf()', now.valueOf()); // Date.valueOf() 1639989558558
+  console.log('+ Date', + now); // + Date 1639989558558
+  console.log('Date.parse()', Date.parse(now)); // Date.parse() 1639989558000
+
+  console.log('new Date(1639989558558)', new Date(1639989558558)); // new Date(1639989558558) Mon Dec 20 2021 16:39:18 GMT+0800 (中国标准时间)
+  console.log('new Date(1639989558000)', new Date(1639989558000)); // new Date(1639989558000) Mon Dec 20 2021 16:39:18 GMT+0800 (中国标准时间)
+  // 补充：获取 当前时间戳 的快捷方式：Date.now();
+```
+- 注： 以上运行结果来源于 Chrome 版本 96.0.4664.110（正式版本） (x86_64)，Date.parse()方法陈独秀 比其他几种方法得出来的结果早了 558ms
+  - 规避问题方案：在代码中多个转化后的时间戳进行比较操作时 注意使用一致的方法
+
+#### 判断当前时间是否
+```javascript
+  function isCurrentDay(targetTimeStamp){
+      const startTimeStamp = new Date().setHours(0, 0, 0, 0); // dateObj.setHours(hoursValue[, minutesValue[, secondsValue[, msValue]]]); 返回 日期对象实例所表示时间的毫秒数
+      const endTimeStamp =  new Date().setHours(23, 59, 59, 999);
+      return startTimeStamp <= targetTimeStamp && targetTimeStamp <= endTimeStamp;
+  }
+  isCurrentDay(targetTimeStamp); // targetTimeStamp为目标时间戳
+```
+
+
+
 
