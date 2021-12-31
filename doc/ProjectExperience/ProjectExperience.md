@@ -1191,6 +1191,51 @@ const html = `<ul>
 
 ```html
     // 用样伪元素实现小图标
+    // 关键抓手：
+    // 1）伪元素相当于目标元素的子元素，用到了定位（子绝父相）   
+    // 2）三角形的画法：设置容器width0 height0，四边border-width border-style相同，单边border-color有色，另外三边border-color透明色来实现
+    <style>
+        .square{
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border: 2px #000000 solid;
+            background-color: #FFF;
+        }
+        .square::before{
+            content: "";
+            position: absolute;
+            z-index: 2;
+            left: 20%;
+            bottom: -28px;
+            display: block;
+            width: 0px;
+            height: 0px;
+            /* border-width: 15px;
+            border-style: solid;
+            border-color: #FFF transparent transparent transparent; */
+            border: 15px solid transparent;
+            border-top-color: #FFF;
+        }
+        .square::after{
+            content: "";
+            position: absolute;
+            z-index: 1;
+            left: 20%;
+            bottom: -30px;
+            display: block;
+            width: 0px;
+            height: 0px;
+            /* border-width: 15px;
+            border-style: solid;
+            border-color: #000 transparent transparent transparent; */
+            border: 15px solid transparent;
+            border-top-color: #000;
+        }
+    </style>
+    <body>
+        <div class="square"></div>
+    </body>
 ```
 
 
