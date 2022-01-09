@@ -1241,11 +1241,15 @@ const html = `<ul>
         }
         .square::before{
             content: "";
-            position: absolute;
+            position: absolute; 
+            /* 
+                浏览器控制台发现：
+                行内元素如果设置了 “position: absolute || fixed;” || “float: left || right;”
+                display 值就会变成了 block
+            */
             z-index: 2;
             left: 20%;
             bottom: -28px;
-            display: block;
             width: 0px;
             height: 0px;
             /* border-width: 15px;
@@ -1260,7 +1264,6 @@ const html = `<ul>
             z-index: 1;
             left: 20%;
             bottom: -30px;
-            display: block;
             width: 0px;
             height: 0px;
             /* border-width: 15px;
