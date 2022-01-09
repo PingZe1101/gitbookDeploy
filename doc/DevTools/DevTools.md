@@ -124,6 +124,18 @@ echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
     "terminal.integrated.fontFamily": "Meslo LG S for Powerline"
     ```
 
+## 在终端（iTerm2 || Mac自带Terminal 都适用）中通过 命令的方式打开 文件夹
+- 在 Finder 中显示
+  1. 在终端中cd到 目标文件夹名 的根目录
+  2. 使用“open 目标文件夹名“命令
+- 使用 Visual Studio Code 打开
+  1. 在 Visual Studio Code 中安装“code”命令
+     1. 打开VSCode
+     2. command+shift+p –> 输入shell command –> 点击提示Shell Command: Install ‘code’ command in PATH
+        1. 输入shell command时可以同步看到“Shell Command: Uninstall ‘code’ command in PATH”，点击可卸载“code”命令
+  2. 在终端中cd到 目标文件夹名 的根目录
+  3. 使用“code 目标文件夹名“命令
+
 ## git相关
 ### 本地配置
 - 查看git配置信息：git config --list

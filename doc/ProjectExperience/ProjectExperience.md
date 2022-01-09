@@ -1161,17 +1161,54 @@ const html = `<ul>
 ### 伪类 伪元素
 - 伪类
   - 伪类是 样式选择器 的一种，用于选择处于特定状态的元素，表现与类名相似：能够减少多余的类，让代码更灵活、更易于维护，伪类开头为 单冒号:
+  - 关于 :link :visited :hover :active 伪元素需要注意的点：
+    - css 代码书写顺序按照 love hate即可：link o visited e     hover active te
+    - **如果url被点击访问过，访问过的记录就会在浏览器缓存中存在，元素展示的就会是 :visited 的样式，刷新页面||重启浏览器都是无效的，只有清除浏览器缓存才能回到 :link 的样式**
+      - 亲测“开发者工具 Application --> Storage --> Clear site data”无效哈，还是得去“设置 --> 隐私设置和安全 --> 清除浏览数据”中去处理
 
 |伪类|作用|
 |:----:|:----:|
 |:link|将样式添加到未被访问过的链接（a标签）|
 |:visited|将样式添加到已被访问过的链接（a标签）|
 |:hover|将样式添加到鼠标悬浮的元素（a标签）|
-|:active|将样式添加到已被激活的元素（a标签）|
+|:active|将样式添加到**处于激活状态（点击瞬间 || 点击未松开）**的元素（a标签）|
 |:focus|将样式添加到获取焦点的元素（表单元素）|
 |:first-child|将样式添加到 一组兄弟元素中的第一个元素|
 |:nth-child(n)|将样式添加到 一组兄弟元素中的第n个元素|
 |:last-child|将样式添加到 一组兄弟元素中的最后一个元素|
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 1. 未被点击过时 显示的颜色，表示链接在正常情况下（即页面刚加载完成时）显示的颜色 */
+        .a-ele:link {
+            color: red;
+        }
+        /* 4. 已经 点击 过 */
+        .a-ele:visited {
+            color: green;
+        }
+        /* 2. 鼠标悬浮 */
+        .a-ele:hover {
+            color: orange;
+        }
+        /* 3. 处于激活状态，点击 按下没有松开 */
+        .a-ele:active {
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <a class="a-ele" href="http://jd.com">testA</a>
+</body>
+</html>
+```
 
 - 伪元素
   - 伪元素 表现如同向标记文本中加入全新的HTML元素，而不是 像伪类 向现有的元素上应用类名，伪元素开头为 双冒号::
