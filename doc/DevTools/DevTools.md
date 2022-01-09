@@ -124,6 +124,12 @@ echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
     "terminal.integrated.fontFamily": "Meslo LG S for Powerline"
     ```
 
+## 窗口基本使用（与Chrome基本相同）
+- 打开新窗口：command+n
+- 打开新标签页（tab）：command+t
+- 关闭当前标签页：command+w
+- 多个标签页切换：control+Tab
+
 ## 在终端（iTerm2 || Mac自带Terminal 都适用）中通过 命令的方式打开 文件夹
 - 在 Finder 中显示
   1. 在终端中cd到 目标文件夹名 的根目录
