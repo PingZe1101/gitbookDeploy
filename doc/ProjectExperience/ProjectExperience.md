@@ -1284,31 +1284,22 @@ const html = `<ul>
     - 微信环境访问“http://debugmm.qq.com/?forcex5=ture”即可
   - 使用 hls.js，细节原理浅尝辄止，[传送门](https://cloud.tencent.com/developer/article/1626973?from=15425)
 ```html
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <video id="J_video" controls width="100%"></video>
-        <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <!-- 偶尔会出现 资源请求不到 -->
-        <script>
-            var video = document.getElementById('J_video');
-            var videoSrc = 'http://ivi.bupt.edu.cn/hls/cctv2hd.m3u8';
-            if (Hls.isSupported()) {
-                var hls = new Hls();
-                hls.loadSource(videoSrc);
-                hls.attachMedia(video);
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                video.src = videoSrc;
-            }
-            video.play();
-        </script>
-    </body>
-</html>
+<body>
+    <video id="J_video" controls width="100%"></video>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <!-- 偶尔会出现 资源请求不到 -->
+    <script>
+        var video = document.getElementById('J_video');
+        var videoSrc = 'http://ivi.bupt.edu.cn/hls/cctv2hd.m3u8';
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+        }
+        video.play();
+    </script>
+</body>
 ```
 
 
