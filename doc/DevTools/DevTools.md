@@ -160,6 +160,7 @@ git branch -d localBrancheName || git branch --delete localBrancheName
 
 // 删除远程分支
 git push origin -d remoteBranchName || git push origin --delete remoteBranchName
+test
 ```
 ### .gitignore
 1. 简介：每个Git项目中都需要一个“.gitignore”文件，这个文件的作用就是告诉Git哪些 文件||文件夹 是不需要被添加到版本管理中的。比如这个基于gitbook框架的项目：根目录下的node_modules 和 _book 文件夹，这些不需要提那家到版本管理中的 文件||文件夹 在项目中很重要，但是它们占用内存也是很大的，所以一般我们使用Git管理的时候 会将其添加到.gitignore文件中
