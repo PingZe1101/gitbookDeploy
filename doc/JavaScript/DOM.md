@@ -46,7 +46,8 @@
    2.  “addEventListener”第三个参数是用来控制事件处理程序 事件捕获时触发 or 事件冒泡时触发
        1.  addEventListener的第三个参数设置为true和false的区别
            1.  true表示该元素在事件的“捕获阶段”（由外往内传递时）响应事件；
-           2.  false表示该元素在事件的“冒泡阶段”（由内向外传递时）响应时间
+           2.  false表示该元素在事件的“冒泡阶段”（由内向外传递时）响应事件
+       2.  第三个参数默认为false
             ```html
     `           <div id='d'>
                     <p id='p'>
@@ -74,7 +75,7 @@
                         // P 3
                         // DIV 3
                     ```
-                   1. p和div都是在冒泡阶段相应了事件，由于冒泡的特性，裹在最里层的span率先做出响应
+                   1. p和div都是在冒泡阶段响应了事件，由于冒泡的特性，裹在最里层的span率先做出响应
                 2. addEventListener第三个参数设置为true，点击“Click Me!”：
                     ```javascript
                         div.addEventListener('click', onClickFn, false);

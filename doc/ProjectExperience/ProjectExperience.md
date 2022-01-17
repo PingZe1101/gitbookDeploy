@@ -721,13 +721,17 @@ const html = `<ul>
 1. CSS2
    1. 既然CSS2可以实现媒体查询 那为什么不用这个方法呢，CSS2媒体查询最大的弊端就是它会增加页面http的请求次数，增加了页面负担，我们用CSS3把 媒体查询样式 都写在一个文件里面才是最佳的方法
 ```html
+<!-- demo1 -->
 <link rel="stylesheet" href="styleA.css" media="screen and (min-width: 800px)">  
 <link rel="stylesheet" href="styleB.css" media="screen and (min-width: 600px) and (max-width: 800px)">  
 <link rel="stylesheet" href="styleC.css" media="screen and (max-width: 600px)">  
 ```
-   2. 上面将设备分成3种，分别是宽度大于800px时，应用 styleA ，宽度在600px到800px之间时应用 styleB ，以及宽度小于600px时应用 styleC 。那假如宽度正好等于800px时该应用那个样式？是 styleB，因为前两条表达式都成立，按CSS默认优先级规则后者覆盖了前者。
-因此，为了避免冲突，这个例子正常情况应该这样写：
+   2. 上面将设备分成3种，分别是宽度大于800px时，应用 styleA ，宽度在600px到800px之间时应用 styleB ，以及宽度小于600px时应用 styleC 。**那假如宽度正好等于800px时该应用哪个样式？是 styleB，因为前两条表达式都成立，按CSS默认优先级规则后者覆盖了前者**。因此，**为了避免冲突**，这个例子正常情况应该这样写：
+      1. 备注：demo1 和 demo2的区别
+         1. demo1：视口宽度在 media 设置的尺寸下 当前 link 引入的 style 才会生效，media写法使得 **只有一份 style 生效**，不存在不同 link 引入的 style 之间的相互层叠
+         2. demo2: 视口宽度在 media 设置的尺寸下 当前 link 引入的 style 就会生效，media写法使得 **可能有多份 style 同时生效**，存在不同 link 引入的 style 之间的相互层叠
 ```html
+<!-- demo2 -->
 <link rel="stylesheet" href="styleA.css" media="screen">  
 <link rel="stylesheet" href="styleB.css" media="screen and (max-width: 800px)">  
 <link rel="stylesheet" href="styleC.css" media="screen and (max-width: 600px)">  
