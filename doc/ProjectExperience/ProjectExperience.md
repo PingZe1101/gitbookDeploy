@@ -940,6 +940,13 @@ const html = `<ul>
                 country: 'China'
             }
         } */
+    
+    /* 
+        其他常用 jQuery方法 小汇：
+            end：取消当前的jQuery对象，返回前面的jQuery对象
+            eq(n)：获取第n个元素，结果为 jQuery对象
+            get(n)：获取第n个元素，结果为 Dom对象
+    */
     </script>
 </body>
 </html>

@@ -1,4 +1,11 @@
 ## css
+### 删除a标签默认样式
+```css
+a {
+  text-decoration: none;
+  color: #333; // 值为设计稿 目标样式
+}
+```
 ### 文字单行超出省略号儿
 ```css
 overflow: hidden; //超出的文本隐藏
