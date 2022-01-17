@@ -718,7 +718,8 @@ const html = `<ul>
 ```
 
 ### CSS媒体查询
-1. CSS2
+1. CSS 媒体查询media screen 中width的值代表**页面的可用宽度**，获取方法：window.innerWidth
+2. CSS2
    1. 既然CSS2可以实现媒体查询 那为什么不用这个方法呢，CSS2媒体查询最大的弊端就是它会增加页面http的请求次数，增加了页面负担，我们用CSS3把 媒体查询样式 都写在一个文件里面才是最佳的方法
 ```html
 <!-- demo1 -->
