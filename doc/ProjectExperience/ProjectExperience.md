@@ -648,6 +648,7 @@ const html = `<ul>
             $('.nav-item').click(function(){
                 // css中没有scrollTop属性，scrollTop是jQuery中的方法
                 // animate 与 scrollTop 结合使用达成滑动回顶部效果
+                // 320 值是随意给的，滚动到距离顶部 320px 的位置
                 $('html,body').animate({scrollTop: `${floorOffsetTopArr[$(this).index()] - 320}px`});
                 $(this).addClass('active').siblings().removeClass('active');
             });
