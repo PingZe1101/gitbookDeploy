@@ -24,5 +24,9 @@
    4. expandable-chapters-small：章节导航支持多层目录，并配置箭头图标，点击箭头才能实现收放目录
    5. insert-logo：左侧导航栏上方插入Logo
 
-
+## markdown语法
+- 插入图片：![alt text](http://path/to/img.jpg)
+  - 图片链接地址可以使用 base64 --> ![alt text][base64Variate]，base64Variate为定义在当前文件最下方的变量 值为图片对应的base64
+- 文字链接：[Title](超链地址)
+- 插入图片，同时图片加链接：[![alt text](http://path/to/img.jpg)](超链地址)
 
