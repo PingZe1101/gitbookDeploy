@@ -10,14 +10,16 @@
   - background-attachment
     - scroll：背景图片随着页面的滚动而滚动（默认值）
     - fixed：背景图片不会随着页面的滚动而滚动
+  - background-position
+    - top center bottom left right，如果仅规定了一个关键词 第二个值将是“center”
+      - **top left 和 left top 是一样的，都能够识别（已写demo验证）**
   - background-size
-    - cover：保持图像的纵横比 将图像缩放成 完全覆盖背景定位区域的 最小大小（最小限度地缩放图片 以覆盖整个背景区域）
-    - contain：保持图像的纵横比 将图像缩放成 适合背景定位区域的 最大大小（需完整地展示背景图 最大限度地缩放图片去适应背景区域尺寸）
+    - cover：等比缩放背景图 以完全覆盖掉 背景区域
+    - contain：在背景区域内完整地、最大化地展示 背景图（宽高等比缩放）
     - percentage：将计算相对于背景定位区域的百分比。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为"auto(自动)"
       - 背景区域非正方形的情况下：
         - width > height: contain === 100% auto
         - height > width: contain === auto 100%
-
 
 
 
