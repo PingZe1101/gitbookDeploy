@@ -1408,7 +1408,9 @@ const html = `<ul>
 ```
 
 ### 顶级域名（Top-level Domain Name）、二级域名、三级域名...
-- 顶级域名就是 一级域名，e.g.(exempli gratia) .cn | .com | .org | .edu | .gov | .net
+- 顶级域名就是 一级域名，分为 类别顶级域名（gTLD）和 地理顶级域名（ccTLD）
+  - 类别顶级域名 e.g.(exempli gratia) .com | .org | .edu | .gov | .net ...
+  - 地理顶级域名 e.g. .cn | .uk ...
 - n级域名 就是在 n-1级域名前 追加一级
 - 局部概念
   - www.jd.com：com 为顶级域名，jd 为二级域名，www 为三级域名
