@@ -1,4 +1,4 @@
 # gitbook install安装的依赖
 /node_modules/
 # gitbook serve || gitbook build生成的
-# /_book/  
+# /_book/  尝试将build后的 _book文件夹 单独放到 release分支下，部署时直接切换到 release分支
